@@ -26,6 +26,18 @@ router.post('/login', async (req, res, next)=>{
   }
 });
 
+router.post('/verify', async (req, res, next)=>{
+  try {
+    console.log(req.body)
+    await controller.verifycode(req, res);
+  } catch (err) {
+    console.log(err)
+    return res.status(500).json({
+      message:"Internal server error"
+     })
+  }
+});
+
 router.post('/sendmail',async (req, res, next)=> {
   try {
     await controller.sendmail(req);
